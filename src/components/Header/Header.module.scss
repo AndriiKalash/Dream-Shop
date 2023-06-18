@@ -1,0 +1,53 @@
+
+.root {
+    border-bottom: 1px solid #e0e0e0;
+}
+.inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+}
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    height: 68px;
+    a{
+        margin-right: 40px;
+        font-weight: 600;
+        color: #888484;
+        text-decoration: none;
+        border-bottom: 2px solid transparent;
+    }
+    a:hover{
+        border-bottom: 1px solid #888484;
+        transition: all 500ms ease-in-out;
+    }
+    .activeLink{
+        color: #000;
+        border-bottom: 2px solid #000;
+        transition: all 500ms ease;
+    }
+    .cart{
+        position: relative;
+    }
+    .cartCount{
+        position:absolute;
+        top: 0;
+        left: 25px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 1px solid #888484;
+        background-color: #888484;
+        p{
+            color:  #fff;
+            font-size: 10px;
+        }
+    }
+}
+

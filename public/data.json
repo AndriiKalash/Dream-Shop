@@ -1,0 +1,21 @@
+[
+  
+    {
+      "id": 1,
+      "image": "image/home-slider/slide1.jpg",
+      "title": "We sell what we love",
+      "text": "Experience the warmth of home."
+    },
+    {
+      "id": 2,
+      "image": "image/home-slider/slide2.jpg",
+      "title": "We sell what we love",
+      "text": "Discover the essence of romance."
+    },
+    {
+      "id": 3,
+      "image": "image/home-slider/slide3.jpg",
+      "title": "We sell what we love",
+      "text": "Embrace the beauty of love."
+    }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "image": "https://images.pexels.com/photos/7260275/pexels-photo-7260275.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "title": "Relaxing Lavender ",
+    "price_usd": 9.99,
+    "description": "Indulge in the soothing aroma of lavender with this high-quality scented candle. Perfect for creating a calming atmosphere and promoting relaxation.",
+    "created_by": "Candle Emporium"
+  },
+  {
+    "id": 2,
+    "image": "https://images.pexels.com/photos/6681848/pexels-photo-6681848.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "title": "Fresh Linen ",
+    "price_usd": 12.99,
+    "description": "Bring the scent of fresh laundry into your home with this delightful fresh linen candle. Enjoy the clean and comforting fragrance that will uplift your space.",
+    "created_by": "Candle Emporium"
+  },
+  {
+    "id": 3,
+    "image": "https://images.pexels.com/photos/1677008/pexels-photo-1677008.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "title": "Exotic Sandalwood ",
+    "price_usd": 14.99,
+    "description": "Experience the rich and warm fragrance of sandalwood with this exotic candle. Let the captivating scent transport you to a place of tranquility and serenity.",
+    "created_by": "Candle Emporium"
+  },
+  {
+    "id": 4,
+    "image": "https://images.pexels.com/photos/5377435/pexels-photo-5377435.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "title": "Vanilla Bean ",
+    "price_usd": 8.99,
+    "description": "Immerse yourself in the sweet and creamy scent of vanilla with this vanilla bean candle. Fill your home with warmth and coziness, creating a welcoming atmosphere.",
+    "created_by": "Candle Emporium"
+  },
+  {
+    "id": 5,
+    "image": "https://images.pexels.com/photos/1832562/pexels-photo-1832562.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "title": "Citrus Burst ",
+    "price_usd": 11.99,
+    "description": "Infuse your space with a burst of refreshing citrus fragrance with this invigorating candle. Energize your surroundings and uplift your mood with its zesty notes.",
+    "created_by": "Candle Emporium"
+  },
+  {
+    "id": 6,
+    "image": "https://images.pexels.com/photos/7260275/pexels-photo-7260275.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "title": "Relaxing Lavender ",
+    "price_usd": 9.99,
+    "description": "Indulge in the soothing aroma of lavender with this high-quality scented candle. Perfect for creating a calming atmosphere and promoting relaxation.",
+    "created_by": "Candle Emporium"
+  },
+  {
+    "id": 7,
+    "image": "https://images.pexels.com/photos/6681848/pexels-photo-6681848.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "title": "Fresh Linen ",
+    "price_usd": 12.99,
+    "description": "Bring the scent of fresh laundry into your home with this delightful fresh linen candle. Enjoy the clean and comforting fragrance that will uplift your space.",
+    "created_by": "Candle Emporium"
+  },
+  {
+    "id": 8,
+    "image": "https://images.pexels.com/photos/1677008/pexels-photo-1677008.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "title": "Exotic Sandalwood ",
+    "price_usd": 14.99,
+    "description": "Experience the rich and warm fragrance of sandalwood with this exotic candle. Let the captivating scent transport you to a place of tranquility and serenity.",
+    "created_by": "Candle Emporium"
+  }
+]

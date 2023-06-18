@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Container from "@mui/material/Container";
+import "./App.scss";
+import { Header } from "./components/Header";
+import Home from "./pages/Home";
+import Shop from "./pages/Shop";
+import { Route, Routes } from "react-router-dom";
+import TemporaryDrawer from "./components/Drawer";
 
 function App() {
+
+  const [cartOpen, setCartOpen] = useState(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Container maxWidth="xl">
+        <Header openCart={setCartOpen} />
+        <TemporaryDrawer closeCart={setCartOpen} cartStatus={cartOpen}/>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/shop" element={<Shop />} />
+        </Routes>
+      </Container>
     </div>
   );
 }
