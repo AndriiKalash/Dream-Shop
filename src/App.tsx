@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Container from "@mui/material/Container";
 import "./App.scss";
 import { Header } from "./components/Header";

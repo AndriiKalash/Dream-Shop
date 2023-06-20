@@ -1,18 +1,17 @@
-export enum StatusShop {
+export enum StatusCart {
   LOADING = "loading",
   IDLE = "idle",
   ERROR = "error",
 }
 
-export interface IShopItem {
+export interface ICartItem {
   image: string;
   title: string;
   price_usd: number;
   description: string;
   created_by: string;
-  id: number;
 }
-export interface IShopItems {
-  items: IShopItem[];
-  status: StatusShop;
+export interface ICartItems {
+  items: ICartItem[];
+  status: StatusCart;
 }

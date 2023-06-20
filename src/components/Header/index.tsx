@@ -38,16 +38,14 @@ export const Header: React.FC<IHeaderProps> = ({openCart}) => {
             Contact
           </NavLink>
         </div>
-        {openSerch ? (
+        {openSerch &&   
           <TextField
             style={{ height: 68 }}
             id="search"
             label="search"
             variant="standard"
           />
-        ) : (
-          ""
-        )}
+        }
         <div className={styles.navigation}>
           {true ? (
             <NavLink to="/login" className={getLinkClassName}>

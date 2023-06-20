@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { IShopItems, IShopItem, StatusShopItems } from "./type";
+import { IShopItems, IShopItem, StatusShop } from "./type";
 import { RootState } from "../store";
 
 export const fetchShopItems = createAsyncThunk<IShopItem[]>(
@@ -13,7 +13,7 @@ export const fetchShopItems = createAsyncThunk<IShopItem[]>(
 
 const initialState: IShopItems = {
   items: [],
-  status: StatusShopItems.LOADING,
+  status: StatusShop.LOADING,
 };
 
 const shopItemsSlice = createSlice({
@@ -24,15 +24,15 @@ const shopItemsSlice = createSlice({
     builder
       .addCase(fetchShopItems.pending, (state) => {
         state.items = [];
-        state.status = StatusShopItems.LOADING;
+        state.status = StatusShop.LOADING;
       })
       .addCase(fetchShopItems.fulfilled, (state, action) => {
         state.items = action.payload;
-        state.status = StatusShopItems.IDLE;
+        state.status = StatusShop.IDLE;
       })
       .addCase(fetchShopItems.rejected, (state) => {
         state.items = [];
-        state.status = StatusShopItems.ERROR;
+        state.status = StatusShop.ERROR;
       })
       .addDefaultCase(() => {});
   },

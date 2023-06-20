@@ -1,15 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import { CartItems } from './CartItems';
 
 
 interface DrawerProps {
@@ -21,21 +14,15 @@ export default function TemporaryDrawer({closeCart, cartStatus}:DrawerProps) {
 
   const list = () => (
     <Box
-      sx={{ width: 450 }}
+      sx={{ width: 500 }}
       role="presentation"
     >
-      <List>
-          <ListItem disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                 <MailIcon />
-              </ListItemIcon>
-              {/* img, title, -count+ , price */}
-              <ListItemText primary={"Cart"} />
-            </ListItemButton>
-          </ListItem>
-      </List>
+        <h4 
+        style={{paddingLeft:16, color: "#888484"}}>
+            Cart
+        </h4>
       <Divider />
+      <CartItems/>
     </Box>
   );
 
