@@ -1,9 +1,11 @@
-import { Button, IconButton, Link, SwipeableDrawer, TextField } from "@mui/material";
+import { IconButton, Link, TextField } from "@mui/material";
 import LocalMallTwoToneIcon from "@mui/icons-material/LocalMallTwoTone";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { NavLink } from "react-router-dom";
 import styles from "./Header.module.scss";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { cartSelector } from "../../redux/cart/slice";
 
 interface IHeaderProps {
   openCart: (value: boolean) => void;
@@ -12,6 +14,7 @@ interface IHeaderProps {
 export const Header: React.FC<IHeaderProps> = ({openCart}) => {
 
   const [openSerch, setOpenSearch] = useState(false);
+  const {totalCount} = useSelector(cartSelector)
 
   type LinkProps = {
     isActive: boolean;
@@ -62,9 +65,9 @@ export const Header: React.FC<IHeaderProps> = ({openCart}) => {
           <div className={styles.cart} onClick={()=>openCart(true)}>
             <IconButton aria-label="add to shopping cart">
               <LocalMallTwoToneIcon />
-              {true && (
+              {totalCount>0 && (
                 <span className={styles.cartCount}>
-                  <p>1</p>
+                  <p>{totalCount}</p>
                 </span>
               )}
             </IconButton>

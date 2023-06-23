@@ -14,10 +14,11 @@
 .cardBottom{
     display: flex;
     justify-content: space-around;
+    align-items: center;
     position: relative;
-    span {
-        position: absolute;
-        top: 5px;
-        right: 33px;
-    }
+}
+.cartCount {
+    position: absolute;
+    top: 5px;
+    right: 22px;
 }

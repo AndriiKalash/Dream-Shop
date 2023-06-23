@@ -8,7 +8,7 @@ import { ShopCard } from "../ShopCard";
 import { SkeletonCard } from "../ShopCard/SkeletonCard";
 import styles from "./ShopItems.module.scss";
 
-export const ShopItems: React.FC = () => {
+export const ShopView: React.FC = () => {
   const { items, status } = useSelector(shopItemsSelector);
   const dispatch = useAppDispatch();
 

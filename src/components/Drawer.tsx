@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Divider from '@mui/material/Divider';
-import { CartItems } from './CartItems';
+import { CartView } from './CartView';
 
 
 interface DrawerProps {
@@ -14,7 +14,7 @@ export default function TemporaryDrawer({closeCart, cartStatus}:DrawerProps) {
 
   const list = () => (
     <Box
-      sx={{ width: 500 }}
+      sx={{ width: 400 }}
       role="presentation"
     >
         <h4 
@@ -22,7 +22,7 @@ export default function TemporaryDrawer({closeCart, cartStatus}:DrawerProps) {
             Cart
         </h4>
       <Divider />
-      <CartItems/>
+      <CartView/>
     </Box>
   );
 
