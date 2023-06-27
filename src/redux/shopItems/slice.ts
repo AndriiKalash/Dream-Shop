@@ -3,10 +3,12 @@ import axios from "axios";
 import { IShopItems, IShopItem, StatusShop } from "./type";
 import { RootState } from "../store";
 
-export const fetchShopItems = createAsyncThunk<IShopItem[]>(
+export const fetchShopItems = createAsyncThunk<IShopItem[], string | undefined>(
   "shopItems/fetchShopItems",
-  async () => {
-    const { data } = await axios.get("shopItems.json");
+  async (search) => {
+    const { data } = await axios.get(
+      `https://63f695a3ab76703b15c1c124.mockapi.io/items?title=${search}`
+    );
     return data;
   }
 );

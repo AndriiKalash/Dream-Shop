@@ -11,7 +11,7 @@ export interface ICartItem {
   price_usd: number;
   description: string;
   created_by: string;
-  count: number;
+  count?: number;
 }
 export interface ICartItems {
   items: ICartItem[];

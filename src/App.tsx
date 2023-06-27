@@ -10,12 +10,16 @@ import TemporaryDrawer from "./components/Drawer";
 function App() {
 
   const [cartOpen, setCartOpen] = useState(false);
+  const [activeComponent, setActiveComponent] = useState("");
 
   return (
     <div className="App">
       <Container maxWidth="xl">
-        <Header openCart={setCartOpen} />
-        <TemporaryDrawer closeCart={setCartOpen} cartStatus={cartOpen}/>
+        <Header openCart={setCartOpen} onActiveChildren={setActiveComponent} />
+        <TemporaryDrawer
+         closeCart={setCartOpen}
+         cartStatus={cartOpen}
+         chidren={activeComponent}/>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />

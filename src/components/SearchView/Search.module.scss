@@ -1,0 +1,28 @@
+.chapter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  color: #888484;
+  font-weight:600;
+  font-size: 18px;
+  height: 43px;
+
+  label {
+    color: #888484;
+    font-weight: 600;
+    font-size: 18px;
+  }
+}
+.inputField{
+  padding-left: 15px;
+  display: flex;
+
+}
+.clearInput{
+  align-self: flex-end;
+  font-size: 15px;
+}
+.clearInput svg {
+  font-size: 15px !important;
+}

@@ -15,16 +15,21 @@ import { addToCart, deleteCartItem, minusCartItem } from "../../redux/cart/slice
 import { useAppDispatch } from "../../hooks";
 import { ICartItem } from "../../redux/cart/type";
 
-interface ICartItemProps extends ICartItem {}
+interface ICartItemProps extends ICartItem {
+  cart?:boolean;
+}
 
-export const CartCard: React.FC<ICartItemProps> = ({
+export const DrawerCard: React.FC<ICartItemProps> = ({
   id,
   image,
   title,
   count,
   price_usd,
+  cart,
 }) => {
+  
   const dispatch = useAppDispatch();
+
   const onAddCartItem = () => {
     const cartItem = {
       id,
@@ -32,8 +37,13 @@ export const CartCard: React.FC<ICartItemProps> = ({
     dispatch(addToCart(cartItem));
   };
 
+  const onMinusCartItem = () => dispatch(minusCartItem(id));
+
+  const price = Number((count? price_usd*count : price_usd).toFixed(2));
+
+
   return (
-    <div>
+    <>
       <ListItem disablePadding>
         <ListItemButton>
           <ListItemAvatar>
@@ -46,15 +56,14 @@ export const CartCard: React.FC<ICartItemProps> = ({
           <ListItemText
             style={{ textAlign: "left" }}
             primary={title}
-            secondary={
+            secondary={cart &&
               <Typography
                 sx={{ display: "inline" }}
                 component="div"
-                variant="h6"
-                color="text.primary">
+                variant="h6">
                 <IconButton
                 disabled={count === 1}
-                onClick={()=>dispatch(minusCartItem(id))}>
+                onClick={onMinusCartItem}>
                   <RemoveCircleOutlineIcon/>
                 </IconButton>
                 <span>{count}</span>
@@ -66,8 +75,8 @@ export const CartCard: React.FC<ICartItemProps> = ({
           />
           <ListItemText
             style={{ textAlign: "end" }}
-            primary={(price_usd*count).toFixed(2)}
-            secondary={
+            primary={price}
+            secondary={ cart &&
               <Typography
                 sx={{ display: "inline" }}
                 component="div"
@@ -82,6 +91,6 @@ export const CartCard: React.FC<ICartItemProps> = ({
         </ListItemButton>
       </ListItem>
       <Divider />
-    </div>
+    </>
   );
 };

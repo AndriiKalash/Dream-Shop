@@ -1,19 +1,19 @@
-import { IconButton, Link, TextField } from "@mui/material";
+import { IconButton, Link} from "@mui/material";
 import LocalMallTwoToneIcon from "@mui/icons-material/LocalMallTwoTone";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { NavLink } from "react-router-dom";
 import styles from "./Header.module.scss";
-import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { cartSelector } from "../../redux/cart/slice";
 
 interface IHeaderProps {
   openCart: (value: boolean) => void;
+  onActiveChildren:(value: string) => void;
 }
 
-export const Header: React.FC<IHeaderProps> = ({openCart}) => {
+export const Header: React.FC<IHeaderProps> = ({openCart, onActiveChildren}) => {
 
-  const [openSerch, setOpenSearch] = useState(false);
+  
   const {totalCount} = useSelector(cartSelector)
 
   type LinkProps = {
@@ -41,14 +41,6 @@ export const Header: React.FC<IHeaderProps> = ({openCart}) => {
             Contact
           </NavLink>
         </div>
-        {openSerch &&   
-          <TextField
-            style={{ height: 68 }}
-            id="search"
-            label="search"
-            variant="standard"
-          />
-        }
         <div className={styles.navigation}>
           {true ? (
             <NavLink to="/login" className={getLinkClassName}>
@@ -59,10 +51,14 @@ export const Header: React.FC<IHeaderProps> = ({openCart}) => {
               Logout
             </Link>
           )}
-          <IconButton onClick={() => setOpenSearch(true)}>
+          <IconButton onClick={()=>{
+            openCart(true);
+            onActiveChildren('search')}}>
             <SearchOutlinedIcon />
           </IconButton>
-          <div className={styles.cart} onClick={()=>openCart(true)}>
+          <div className={styles.cart} onClick={()=>{
+            openCart(true);
+            onActiveChildren('cart')}}>
             <IconButton aria-label="add to shopping cart">
               <LocalMallTwoToneIcon />
               {totalCount>0 && (

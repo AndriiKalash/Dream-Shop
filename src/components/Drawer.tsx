@@ -1,43 +1,43 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import Divider from '@mui/material/Divider';
-import { CartView } from './CartView';
-
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import Divider from "@mui/material/Divider";
+import { CartView } from "./CartView";
+import { SearchView } from "./SearchView";
 
 interface DrawerProps {
-    closeCart: (value: boolean) => void;
-    cartStatus: boolean;
-  }
+  closeCart: (value: boolean) => void;
+  cartStatus: boolean;
+  chidren:string;
+}
 
-export default function TemporaryDrawer({closeCart, cartStatus}:DrawerProps) {
-
-  const list = () => (
-    <Box
-      sx={{ width: 400 }}
-      role="presentation"
-    >
-        <h4 
-        style={{paddingLeft:16, color: "#888484"}}>
-            Cart
-        </h4>
+export default function TemporaryDrawer({
+  closeCart,
+  cartStatus,
+  chidren,
+}: DrawerProps) {
+  const listCart = () => (
+    <Box sx={{ width: 400 }} 
+    role="presentation"
+     >
       <Divider />
-      <CartView/>
+      {
+        chidren === "cart" &&
+        <CartView onClose={closeCart} />
+      }
+      {
+       chidren === "search" &&
+       <SearchView onClose={closeCart}/>
+      }
     </Box>
   );
 
   return (
-    <div>
-        <React.Fragment >
-          <Drawer
-            variant='temporary'
-            anchor={'right'}
-            open={cartStatus}
-            onClose={()=>closeCart(false)}
-          >
-            {list()}
-          </Drawer>
-        </React.Fragment>
-    </div>
+      <Drawer
+        variant="temporary"
+        anchor={"right"}
+        open={cartStatus}
+        onClose={() => closeCart(false)}>
+        {listCart()}
+      </Drawer>
   );
 }

@@ -18,19 +18,41 @@ const cartSlice = createSlice({
       const findedItem = state.items.find(
         (item) => action.payload.id === item.id
       );
-      if (findedItem) {
+      if (findedItem?.count) {
         findedItem.count++;
       } else {
         state.items.push(action.payload);
       }
-      state.totalCount = state.items.reduce((sum, item) => sum + item.count, 0);
+      state.totalCount = state.items.reduce(
+        (sum, item) => sum + item.count!,
+        0
+      );
+      state.totalPrice = state.items.reduce(
+        (sum, item) => sum + item.count! * item.price_usd,
+        0
+      );
     },
     minusCartItem(state, action: PayloadAction<number>) {
       const findedItem = state.items.find((item) => action.payload === item.id);
-      findedItem!.count--;
+      if (findedItem?.count) {
+        findedItem.count--;
+      }
+      state.totalCount--;
+      state.totalPrice = state.items.reduce(
+        (sum, item) => sum + item.count! * item.price_usd,
+        0
+      );
     },
     deleteCartItem(state, action: PayloadAction<number>) {
       state.items = state.items.filter((item) => item.id !== action.payload);
+      state.totalCount = state.items.reduce(
+        (sum, item) => sum + item.count!,
+        0
+      );
+      state.totalPrice = state.items.reduce(
+        (sum, item) => sum + item.count! * item.price_usd,
+        0
+      );
     },
   },
 });

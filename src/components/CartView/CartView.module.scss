@@ -1,0 +1,20 @@
+.chapter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    color: #888484;
+    font-weight:600;
+    font-size: 18px;
+    height: 43px;
+}
+.cartIcon {
+    font-size: 110px !important;
+    color: #888484 !important;
+    transition: all 400ms ease-in-out !important;
+}
+.cartIcon:hover {
+    font-size: 120px !important;
+    color: #6e3e98 !important;
+    transition: all 400ms ease-in-out !important;
+  }
