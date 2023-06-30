@@ -23,6 +23,35 @@
   align-self: flex-end;
   font-size: 15px;
 }
-.clearInput svg {
+.clearInputIcon {
   font-size: 15px !important;
 }
+.innerStatus{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.statusQuery{
+  padding: 20px;
+  font-weight: 300;
+  font-size: 20px;
+  color: #888484;
+}
+.statusQueryIcon{
+    font-size: 110px !important;
+    color: #888484 ;
+}
+.buttonMore{
+  font-size: 14px;
+  color: #888484 !important;
+  background-color: transparent !important;
+  border-bottom: 1px solid #888484;
+  margin-left: 31px !important;
+}
+.buttonMore:hover{
+  background-color: rgba(0, 0, 0, 0.305) !important;
+  color:#fff !important;
+  border: 1px solid #fff;
+  transition: all 500ms ease-in-out;
+}   
+

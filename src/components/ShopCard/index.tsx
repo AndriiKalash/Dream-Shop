@@ -8,14 +8,17 @@ import {
   Typography,
 } from "@mui/material";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
-import { IShopItem } from "../../redux/shopItems/type";
-import styles from "./ShopCard.module.scss";
-import { useAppDispatch } from "../../hooks";
+
+import { useSelector } from "react-redux";
+import { IShopItem } from "../../redux/filters/type";
+import { useAppDispatch } from "../../hooks/useApp";
 import { addToCart, findedCartItem } from "../../redux/cart/slice";
 import { ICartItem } from "../../redux/cart/type";
-import { useSelector } from "react-redux";
+
+import styles from "./ShopCard.module.scss";
 
 interface ShopCardPropsType extends IShopItem {}
+
 
 export const ShopCard: React.FC<ShopCardPropsType> = ({
   image,
@@ -25,6 +28,7 @@ export const ShopCard: React.FC<ShopCardPropsType> = ({
   description,
   created_by,
 }) => {
+  
   const itemAddedToCart = useSelector(findedCartItem(id));
   const dispatch = useAppDispatch();
 

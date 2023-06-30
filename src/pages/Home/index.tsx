@@ -1,12 +1,16 @@
-import { useEffect, useState } from "react";
-import styles from "./Home.module.scss";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import axios from "axios";
 import { Button } from "@mui/material";
+
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
-import { StatusShop } from "../../redux/shopItems/type";
+import { StatusShop } from "../../redux/filters/type";
+
 import { Spinner } from "../../components/Spinner";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import styles from "./Home.module.scss";
+
 const Carousel = require("react-responsive-carousel").Carousel;
+
 
 const Home = () => {
   interface SlidesState {
@@ -15,6 +19,7 @@ const Home = () => {
     title: string;
     text: string;
   }
+
   const [slides, setSlides] = useState<SlidesState[]>([]);
   const [slidesStatus, setSlidesStatus] = useState<StatusShop>(
     StatusShop.LOADING

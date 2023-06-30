@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
+
 import { CartView } from "./CartView";
 import { SearchView } from "./SearchView";
 
@@ -15,10 +16,9 @@ export default function TemporaryDrawer({
   cartStatus,
   chidren,
 }: DrawerProps) {
+
   const listCart = () => (
-    <Box sx={{ width: 400 }} 
-    role="presentation"
-     >
+    <Box sx={{ width: 400 }}  role="presentation">
       <Divider />
       {
         chidren === "cart" &&

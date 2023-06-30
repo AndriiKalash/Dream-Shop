@@ -1,35 +1,52 @@
-import { Divider, IconButton, List, TextField } from "@mui/material";
+import { Button, Divider, IconButton, List, TextField } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import ClearIcon from "@mui/icons-material/Clear";
-import { useEffect, useRef, useState } from "react";
-import styles from "./Search.module.scss";
-import { DrawerCard } from "../DrawerCard";
+import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+
 import { useSelector } from "react-redux";
-import { shopItemsSelector } from "../../redux/shopItems/slice";
-import { useAppDispatch } from "../../hooks";
-import { IShopItem } from "../../redux/shopItems/type";
+import { Link } from "react-router-dom";
 import { useGetGoodsQuery } from "../../api/apiSlice";
+import { filterSelector, serachMore, setSearchValue } from "../../redux/filters/slice";
+import { useAppDispatch } from "../../hooks/useApp";
 import useDebounce from "../../hooks/useDebounce";
+
+import { DrawerCard } from "../DrawerCard";
+import { IShopItem } from "../../redux/filters/type";
+import { Spinner } from "../Spinner";
+import styles from "./Search.module.scss";
 
 interface SearchViewProps {
   onClose: (value: boolean) => void;
 }
 
+
 export const SearchView: React.FC<SearchViewProps> = ({ onClose }) => {
-  const [searchValue, setSearchValue] = useState("");
+
+  const { searchValue } = useSelector(filterSelector);
+  const dispatch = useAppDispatch();
   const delaySearch = useDebounce(searchValue, 1000);
   const searchValueBoolean = Boolean(delaySearch);
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const {
     data: items = [],
     isLoading,
     isFetching,
     isError,
-    isSuccess
+    isSuccess,
   } = useGetGoodsQuery(searchValueBoolean ? delaySearch : "", {
     skip: !searchValueBoolean,
   });
+
+  const onSearchMoreGoods = () => {
+    dispatch(serachMore(true));
+    onClose(false);
+  }
+  
+  const onSearchClear = () => {
+    dispatch(setSearchValue(""));
+    dispatch(serachMore(false));
+  }
 
   const renderFilteredItems = (
     value: string,
@@ -39,45 +56,76 @@ export const SearchView: React.FC<SearchViewProps> = ({ onClose }) => {
       return null;
     }
     if (isLoading || isFetching) {
-      return <div>Loading...</div>;//sleleton
+      return (
+        <div className={styles.innerStatus}>
+          <div className={styles.statusQuery}>loading...</div>
+          <Spinner />
+        </div>
+      );
     }
     if (isSuccess && items.length === 0) {
-      return <div>No one goods by your request</div>;//icon sad
+      return (
+        <div className={styles.innerStatus}>
+          <div className={styles.statusQuery}>no one goods by your request</div>
+          <SentimentVeryDissatisfiedIcon className={styles.statusQueryIcon} />
+        </div>
+      );
     }
     if (isError) {
-      return <div>Error occurred while fetching goods</div>;// icon error
+      return (
+        <div className={styles.innerStatus}>
+          <div className={styles.statusQuery}>
+            error occurred while fetching goods
+          </div>
+          <ErrorOutlineIcon className={styles.statusQueryIcon} />
+        </div>
+      );
     }
     return items.map((item) => <DrawerCard {...item} key={item.id} />);
   };
 
-  const clearInput = () => setSearchValue("");
-
+ 
 
   return (
-    <List>
-      <li className={styles.chapter}>
-        <div className={styles.inputField}>
-          <TextField
-            id="search"
-            label="search"
-            variant="standard"
-            color="secondary"
-            value={searchValue}
-            ref={inputRef}
-            onChange={(e) => setSearchValue(e.target.value)}
-          />
-          {searchValue && (
-            <IconButton className={styles.clearInput} onClick={clearInput}>
-              <ClearIcon color="secondary" />
-            </IconButton>
-          )}
-        </div>
-        <IconButton onClick={() => onClose(false)}>
-          <HighlightOffIcon />
-        </IconButton>
-      </li>
-      <Divider />
-      {renderFilteredItems(searchValue, items)}
-    </List>
+    <>
+      <List>
+        <li className={styles.chapter}>
+          <div className={styles.inputField}>
+            <TextField
+              id="search"
+              label="search"
+              variant="standard"
+              color="secondary"
+              value={searchValue}
+              onChange={(e) => dispatch(setSearchValue(e.target.value))}
+            />
+            {searchValue && (
+              <IconButton className={styles.clearInput} onClick={onSearchClear}>
+                <ClearIcon
+                  color="secondary"
+                  className={styles.clearInputIcon}
+                />
+              </IconButton>
+            )}
+          </div>
+          <IconButton onClick={() => onClose(false)}>
+            <HighlightOffIcon />
+          </IconButton>
+        </li>
+        <Divider />
+        {renderFilteredItems(searchValue, items)}
+      </List>
+      {
+        items.length > 0 && searchValue &&
+         <Link to="/shop">
+        <Button 
+        className={styles.buttonMore}
+        variant="contained"
+        onClick={onSearchMoreGoods}>
+          more goods
+        </Button>
+      </Link>
+      }
+    </>
   );
 };

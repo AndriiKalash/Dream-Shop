@@ -16,3 +16,7 @@ export interface IShopItems {
   items: IShopItem[];
   status: StatusShop;
 }
+export interface IFilters {
+  searchValue: string;
+  searchAllGoods: boolean;
+}

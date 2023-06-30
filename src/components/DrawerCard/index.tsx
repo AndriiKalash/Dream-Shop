@@ -11,13 +11,16 @@ import {
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+
 import { addToCart, deleteCartItem, minusCartItem } from "../../redux/cart/slice";
-import { useAppDispatch } from "../../hooks";
+
+import { useAppDispatch } from "../../hooks/useApp";
 import { ICartItem } from "../../redux/cart/type";
 
 interface ICartItemProps extends ICartItem {
   cart?:boolean;
 }
+
 
 export const DrawerCard: React.FC<ICartItemProps> = ({
   id,

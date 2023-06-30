@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IShopItem } from "../redux/shopItems/type";
+import { IShopItem } from "../redux/filters/type";
 
 export const apiSlice = createApi({
   reducerPath: "api",
