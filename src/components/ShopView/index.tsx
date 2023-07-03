@@ -9,22 +9,23 @@ import { ShopCard } from "../ShopCard";
 import { SkeletonCard } from "../ShopCard/SkeletonCard";
 import styles from "./ShopItems.module.scss";
 
+
 export const ShopView: React.FC = () => {
 
-  const { searchValue, searchAllGoods } = useSelector(filterSelector);
+  const { searchValue, searchMoreGoods } = useSelector(filterSelector);
 
   const {
     data: items = [],
     refetch,
     isError,
     isLoading,
-  } = useGetGoodsQuery( searchAllGoods ? searchValue : "" );
+  } = useGetGoodsQuery( searchMoreGoods ? searchValue : "" );
 
   useEffect (() => {
-    if (searchAllGoods) {
+    if (searchMoreGoods) {
       refetch();
     }
-  },[searchAllGoods,refetch]);
+  },[searchMoreGoods,refetch]);
 
   
   return (

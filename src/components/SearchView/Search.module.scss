@@ -15,9 +15,7 @@
   }
 }
 .inputField{
-  padding-left: 15px;
   display: flex;
-
 }
 .clearInput{
   align-self: flex-end;
@@ -41,17 +39,19 @@
     font-size: 110px !important;
     color: #888484 ;
 }
+.buttonMoreLink::after{
+  display: none;
+}
 .buttonMore{
   font-size: 14px;
   color: #888484 !important;
   background-color: transparent !important;
   border-bottom: 1px solid #888484;
-  margin-left: 31px !important;
+  margin: 8px 16px !important;
 }
 .buttonMore:hover{
-  background-color: rgba(0, 0, 0, 0.305) !important;
+  background-color: #888484 !important;
   color:#fff !important;
-  border: 1px solid #fff;
   transition: all 500ms ease-in-out;
-}   
+}  
 

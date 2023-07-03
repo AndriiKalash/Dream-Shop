@@ -4,7 +4,7 @@ import { RootState } from "../store";
 
 const initialState: IFilters = {
   searchValue: "",
-  searchAllGoods: false,
+  searchMoreGoods: false,
 };
 
 const filtersSlice = createSlice({
@@ -15,7 +15,7 @@ const filtersSlice = createSlice({
       state.searchValue = action.payload;
     },
     serachMore(state, action: PayloadAction<boolean>) {
-      state.searchAllGoods = action.payload;
+      state.searchMoreGoods = action.payload;
     },
   },
 });

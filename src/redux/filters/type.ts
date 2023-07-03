@@ -1,9 +1,3 @@
-export enum StatusShop {
-  LOADING = "loading",
-  IDLE = "idle",
-  ERROR = "error",
-}
-
 export interface IShopItem {
   image: string;
   title: string;
@@ -14,9 +8,8 @@ export interface IShopItem {
 }
 export interface IShopItems {
   items: IShopItem[];
-  status: StatusShop;
 }
 export interface IFilters {
   searchValue: string;
-  searchAllGoods: boolean;
+  searchMoreGoods: boolean;
 }

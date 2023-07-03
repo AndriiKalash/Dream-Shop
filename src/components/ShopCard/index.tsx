@@ -64,7 +64,7 @@ export const ShopCard: React.FC<ShopCardPropsType> = ({
               <Typography 
               className={styles.cartCount} 
               component="span" 
-              color="#00f3f3">
+              color="primary">
                 {itemAddedToCart.count}
               </Typography>
             )}

@@ -1,6 +1,32 @@
 .App {
   text-align: center;
+}
+body {
   background-color: #ebf8f8;
+}
+a {
+  text-decoration: none;
+  position: relative;
+  margin-right: 40px;
+  font-weight: 600;
+  color: #888484;
+  cursor: pointer;
+}
+a::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #888484;
+  transform-origin: left center;
+  transform: scaleX(0);
+  transition: all 100ms ease-in-out;
+}
+a:hover::after {
+  transition: all 300ms ease-in-out;
+  transform: scaleX(1);
 }
 
 

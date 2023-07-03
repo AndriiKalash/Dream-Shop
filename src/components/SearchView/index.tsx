@@ -7,7 +7,11 @@ import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useGetGoodsQuery } from "../../api/apiSlice";
-import { filterSelector, serachMore, setSearchValue } from "../../redux/filters/slice";
+import {
+  filterSelector,
+  serachMore,
+  setSearchValue,
+} from "../../redux/filters/slice";
 import { useAppDispatch } from "../../hooks/useApp";
 import useDebounce from "../../hooks/useDebounce";
 
@@ -22,7 +26,6 @@ interface SearchViewProps {
 
 
 export const SearchView: React.FC<SearchViewProps> = ({ onClose }) => {
-
   const { searchValue } = useSelector(filterSelector);
   const dispatch = useAppDispatch();
   const delaySearch = useDebounce(searchValue, 1000);
@@ -41,19 +44,26 @@ export const SearchView: React.FC<SearchViewProps> = ({ onClose }) => {
   const onSearchMoreGoods = () => {
     dispatch(serachMore(true));
     onClose(false);
-  }
-  
+  };
+
   const onSearchClear = () => {
     dispatch(setSearchValue(""));
     dispatch(serachMore(false));
-  }
+  };
 
   const renderFilteredItems = (
     value: string,
     items: IShopItem[]
   ): React.ReactNode | null => {
     if (!value) {
-      return null;
+      return (
+        <div className={styles.innerStatus}>
+          <div className={styles.statusQuery}>
+            enter what you are looking for
+          </div>
+          <ErrorOutlineIcon className={styles.statusQueryIcon} />
+        </div>
+      );
     }
     if (isLoading || isFetching) {
       return (
@@ -84,8 +94,6 @@ export const SearchView: React.FC<SearchViewProps> = ({ onClose }) => {
     return items.map((item) => <DrawerCard {...item} key={item.id} />);
   };
 
- 
-
   return (
     <>
       <List>
@@ -95,14 +103,14 @@ export const SearchView: React.FC<SearchViewProps> = ({ onClose }) => {
               id="search"
               label="search"
               variant="standard"
-              color="secondary"
+              color="primary"
               value={searchValue}
               onChange={(e) => dispatch(setSearchValue(e.target.value))}
             />
             {searchValue && (
               <IconButton className={styles.clearInput} onClick={onSearchClear}>
                 <ClearIcon
-                  color="secondary"
+                  color="primary"
                   className={styles.clearInputIcon}
                 />
               </IconButton>
@@ -114,18 +122,17 @@ export const SearchView: React.FC<SearchViewProps> = ({ onClose }) => {
         </li>
         <Divider />
         {renderFilteredItems(searchValue, items)}
+        {items.length > 0 && searchValue && (
+          <Link className={styles.buttonMoreLink}  to="/shop">
+            <Button
+              className={styles.buttonMore}
+              variant="contained"
+              onClick={onSearchMoreGoods}>
+              more goods
+            </Button>
+          </Link>
+        )}
       </List>
-      {
-        items.length > 0 && searchValue &&
-         <Link to="/shop">
-        <Button 
-        className={styles.buttonMore}
-        variant="contained"
-        onClick={onSearchMoreGoods}>
-          more goods
-        </Button>
-      </Link>
-      }
     </>
   );
 };

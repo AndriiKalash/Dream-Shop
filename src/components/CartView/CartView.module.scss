@@ -15,6 +15,29 @@
 }
 .cartIcon:hover {
     font-size: 120px !important;
-    color: #6e3e98 !important;
+    color: #1976d2 !important;
     transition: all 400ms ease-in-out !important;
   }
+  .getOrder{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px 16px !important;
+  }
+  .amount{
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+  }
+  .buttonMore{
+    font-size: 14px;
+    color: #888484 !important;
+    background-color: transparent !important;
+    border-bottom: 1px solid #888484;
+  }
+  .buttonMore:hover{
+    background-color: #888484 !important;
+    color:#fff !important;
+    transition: all 500ms ease-in-out;
+  }  

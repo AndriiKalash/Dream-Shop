@@ -12,9 +12,6 @@
   flex-wrap: wrap;
   align-items: center;
   height: 68px;
-  a {
-    text-decoration: none;
-  }
   .cart {
     position: relative;
   }
@@ -36,34 +33,13 @@
     }
   }
 }
-.link {
-  position: relative;
-  margin-right: 40px;
-  font-weight: 600;
-  color: #888484;
-}
-.link::after {
-  content: "";
-  position: absolute;
-  top: 20px;
-  left: 0;
-  height: 2px;
-  width: 100%;
-  background-color: #888484;
-  transform-origin: left center;
-  transform: scaleX(0);
-}
-.link:hover::after {
-  transition: all 500ms ease-in-out;
-  transform: scaleX(1);
-}
 .activeLink {
   position: relative;
   margin-right: 40px;
   font-weight: 600;
   color: #000;
 }
-.activeLink::after {
+.activeLink::after  {
     content: "";
     position: absolute;
     top: 20px;
@@ -71,4 +47,5 @@
     height: 2px;
     width: 100%;
     background-color: #000;
+    transform: scaleX(1);
 }

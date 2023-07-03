@@ -3,7 +3,6 @@ import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { StatusShop } from "../../redux/filters/type";
 
 import { Spinner } from "../../components/Spinner";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -12,7 +11,14 @@ import styles from "./Home.module.scss";
 const Carousel = require("react-responsive-carousel").Carousel;
 
 
-const Home = () => {
+const Home:React.FC = () => {
+
+  enum  StatusSlide{
+    LOADING = "loading",
+    IDLE = "idle",
+    ERROR = "error",
+  }
+
   interface SlidesState {
     id: number;
     image: string;
@@ -21,21 +27,21 @@ const Home = () => {
   }
 
   const [slides, setSlides] = useState<SlidesState[]>([]);
-  const [slidesStatus, setSlidesStatus] = useState<StatusShop>(
-    StatusShop.LOADING
+  const [slidesStatus, setSlidesStatus] = useState<StatusSlide>(
+    StatusSlide.LOADING
   );
 
   const getSlider = async () => {
     try {
-      setSlidesStatus(StatusShop.LOADING);
+      setSlidesStatus(StatusSlide.LOADING);
       const { data } = await axios.get("data.json");
       setSlides(data);
     } catch (error) {
-      setSlidesStatus(StatusShop.ERROR);
+      setSlidesStatus(StatusSlide.ERROR);
       alert("could not fetch slide");
       throw new Error(error as string);
     } finally {
-      setSlidesStatus(StatusShop.IDLE);
+      setSlidesStatus(StatusSlide.IDLE);
     }
   };
   useEffect(() => {
@@ -44,7 +50,7 @@ const Home = () => {
 
   return (
     <>
-      {slidesStatus === StatusShop.LOADING ? 
+      {slidesStatus === StatusSlide.LOADING ? 
       (
         <div className={styles.sliderContainer}>
           <Spinner />
@@ -55,7 +61,7 @@ const Home = () => {
           showArrows={true}
           showThumbs={false}
           swipeable={true}
-          // autoPlay={true}
+          autoPlay={true}
           interval={10000}
           infiniteLoop={true}>
           {slides.map((slide) => (

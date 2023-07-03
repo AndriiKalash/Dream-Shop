@@ -1,8 +1,8 @@
-export enum StatusCart {
-  LOADING = "loading",
-  IDLE = "idle",
-  ERROR = "error",
-}
+// export enum StatusCart {
+//   LOADING = "loading",
+//   IDLE = "idle",
+//   ERROR = "error",
+// }
 
 export interface ICartItem {
   id: number;
@@ -16,7 +16,6 @@ export interface ICartItem {
 
 export interface ICartItems {
   items: ICartItem[];
-  status: StatusCart;
   totalCount: number;
   totalPrice: number;
 }

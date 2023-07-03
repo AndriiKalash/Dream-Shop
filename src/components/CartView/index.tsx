@@ -1,5 +1,5 @@
 import List from "@mui/material/List";
-import { Divider } from "@mui/material";
+import { Button, Divider } from "@mui/material";
 import { IconButton } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
@@ -16,9 +16,11 @@ import styles from "./CartView.module.scss";
 interface CartViewProps {
   onClose: (value: boolean) => void;
 }
+
+
 export const CartView: React.FC<CartViewProps> = ({ onClose }) => {
 
-  const { items } = useSelector(cartSelector);
+  const { items, totalPrice } = useSelector(cartSelector);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -27,6 +29,7 @@ export const CartView: React.FC<CartViewProps> = ({ onClose }) => {
     navigate("/shop");
     dispatch(serachMore(false));
   };
+
 
   return (
     <List>
@@ -48,7 +51,17 @@ export const CartView: React.FC<CartViewProps> = ({ onClose }) => {
           </IconButton>
         </div>
       ) : (
-        items.map((item) => <DrawerCard {...item} key={item.id} cart />)
+        <>
+          {items.map((item) => (
+            <DrawerCard {...item} key={item.id} cart />
+          ))}
+          <div className={styles.getOrder}>
+            <Button className={styles.buttonMore} variant="contained">
+              order now
+            </Button>
+            <div className={styles.amount}>total amount: {totalPrice}$</div>
+          </div>
+        </>
       )}
     </List>
   );
