@@ -4,11 +4,12 @@ import Divider from "@mui/material/Divider";
 
 import { CartView } from "./CartView";
 import { SearchView } from "./SearchView";
+import { renderedDrawer } from "../App";
 
 interface DrawerProps {
   closeCart: (value: boolean) => void;
   cartStatus: boolean;
-  chidren:string;
+  chidren:renderedDrawer;
 }
 
 
@@ -22,11 +23,11 @@ export default function TemporaryDrawer({
     <Box sx={{ width: 400 }}  role="presentation">
       <Divider />
       {
-        chidren === "cart" &&
+        chidren === renderedDrawer.CART &&
         <CartView onClose={closeCart} />
       }
       {
-       chidren === "search" &&
+       chidren === renderedDrawer.SEARCH &&
        <SearchView onClose={closeCart}/>
       }
     </Box>

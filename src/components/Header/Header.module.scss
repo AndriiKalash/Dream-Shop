@@ -1,6 +1,4 @@
-.root {
-  border-bottom: 1px solid #e0e0e0;
-}
+
 .inner {
   display: flex;
   justify-content: space-between;
@@ -15,29 +13,12 @@
   .cart {
     position: relative;
   }
-  .cartCount {
-    position: absolute;
-    top: 0;
-    left: 25px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    border: 1px solid #888484;
-    background-color: #888484;
-    p {
-      color: #fff;
-      font-size: 10px;
-    }
-  }
 }
 .activeLink {
   position: relative;
   margin-right: 40px;
   font-weight: 600;
-  color: #000;
+  color: #9c27b0;
 }
 .activeLink::after  {
     content: "";
@@ -46,6 +27,8 @@
     left: 0;
     height: 2px;
     width: 100%;
-    background-color: #000;
+    background-color: #9c27b0;
     transform: scaleX(1);
 }
+
+

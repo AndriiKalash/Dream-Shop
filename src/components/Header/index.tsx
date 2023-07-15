@@ -1,10 +1,9 @@
-import { IconButton } from "@mui/material";
-import LocalMallTwoToneIcon from "@mui/icons-material/LocalMallTwoTone";
+import { Badge, Divider, IconButton } from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
-import { NavLink, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { cartSelector } from "../../redux/cart/slice";
 import styles from "./Header.module.scss";
 import {
@@ -12,43 +11,46 @@ import {
   serachMore,
   setSearchValue,
 } from "../../redux/filters/slice";
-import { useAppDispatch } from "../../hooks/useApp";
-import { useEffect, useRef } from "react";
+import { useAppDispatch, useAppSelector } from "../../hooks/useApp";
+import { useEffect, useRef} from "react";
+import { renderedDrawer } from "../../App";
+import { Sort } from "../Sort/Sort";
 
 interface IHeaderProps {
   openCart: (value: boolean) => void;
-  onActiveChildren: (value: string) => void;
+  onActiveChildren: (value: renderedDrawer) => void;
 }
 
 export const Header: React.FC<IHeaderProps> = ({
   openCart,
   onActiveChildren,
 }) => {
-
-  const { totalCount, items } = useSelector(cartSelector);
-  const { searchMoreGoods } = useSelector(filterSelector);
+  const { totalCount, items } = useAppSelector(cartSelector);
+  const { searchMoreGoods } = useAppSelector(filterSelector);
   const dispatch = useAppDispatch();
   const onSearchClear = () => {
     dispatch(setSearchValue(""));
     dispatch(serachMore(false));
   };
   const isMounted = useRef(false);
+  const location = useLocation();
 
   const getLinkClassName = ({
     isActive,
     isPending,
   }: Record<string, boolean>): string => (isActive ? styles.activeLink : "");
 
-  useEffect(()=>{
+  useEffect(() => {
     if (isMounted.current) {
       const json = JSON.stringify(items);
       localStorage.setItem("cart", json);
     }
     isMounted.current = true;
-  },[items]);
-  
+  }, [items]);
+
+ 
   return (
-    <div className={styles.root}>
+    <div>
       <div className={styles.inner}>
         <div className={styles.navigation}>
           <NavLink className={getLinkClassName} to="/">
@@ -73,34 +75,32 @@ export const Header: React.FC<IHeaderProps> = ({
             <a href="#">Logout</a>
           )}
           {searchMoreGoods && (
-            <Link to="/shop"  onClick={onSearchClear}>
+            <Link to="/shop" onClick={onSearchClear}>
               All goods
             </Link>
+          )}
+          {location.pathname === "/shop" && (
+            <Sort/>
           )}
           <IconButton
             onClick={() => {
               openCart(true);
-              onActiveChildren("search");
+              onActiveChildren(renderedDrawer.SEARCH);
             }}>
             <SearchOutlinedIcon />
           </IconButton>
-          <div
-            className={styles.cart}
+          <IconButton
             onClick={() => {
               openCart(true);
-              onActiveChildren("cart");
+              onActiveChildren(renderedDrawer.CART);
             }}>
-            <IconButton aria-label="add to shopping cart">
-              <LocalMallTwoToneIcon />
-              {totalCount > 0 && (
-                <span className={styles.cartCount}>
-                  <p>{totalCount}</p>
-                </span>
-              )}
-            </IconButton>
-          </div>
+            <Badge color="secondary" badgeContent={totalCount}>
+              <ShoppingCartIcon />
+            </Badge>
+          </IconButton>
         </div>
       </div>
+      <Divider />
     </div>
   );
 };

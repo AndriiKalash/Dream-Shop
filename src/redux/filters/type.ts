@@ -12,4 +12,5 @@ export interface IShopItems {
 export interface IFilters {
   searchValue: string;
   searchMoreGoods: boolean;
+  priceValue: number[];
 }

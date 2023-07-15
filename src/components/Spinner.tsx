@@ -5,7 +5,7 @@ export const Spinner = () => (
     height="180"
     width="180"
     radius="9"
-    color="#0797c4"
+    color="#9c27b0"
     ariaLabel="three-dots-loading"
     visible={true}
   />

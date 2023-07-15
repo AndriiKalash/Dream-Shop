@@ -1,4 +1,5 @@
 import {
+  Badge,
   Card,
   CardActionArea,
   CardContent,
@@ -9,16 +10,15 @@ import {
 } from "@mui/material";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 
-import { useSelector } from "react-redux";
 import { IShopItem } from "../../redux/filters/type";
-import { useAppDispatch } from "../../hooks/useApp";
+import { useAppDispatch, useAppSelector } from "../../hooks/useApp";
 import { addToCart, findedCartItem } from "../../redux/cart/slice";
 import { ICartItem } from "../../redux/cart/type";
 
 import styles from "./ShopCard.module.scss";
+import { Link } from "react-router-dom";
 
 interface ShopCardPropsType extends IShopItem {}
-
 
 export const ShopCard: React.FC<ShopCardPropsType> = ({
   image,
@@ -29,7 +29,7 @@ export const ShopCard: React.FC<ShopCardPropsType> = ({
   created_by,
 }) => {
   
-  const itemAddedToCart = useSelector(findedCartItem(id));
+  const itemAddedToCart = useAppSelector(findedCartItem(id));
   const dispatch = useAppDispatch();
 
   const onAddCartItem = () => {
@@ -45,29 +45,26 @@ export const ShopCard: React.FC<ShopCardPropsType> = ({
     dispatch(addToCart(cartItem));
   };
 
+
   return (
     <Grid item xs={3} sm={4} md={4} className={styles.inner}>
       <Card sx={{ maxWidth: 300 }} className={styles.card}>
-      <CardActionArea>
-        <CardMedia component="img" height="350" image={image} alt={title} />
-      </CardActionArea>
+      <Link to={`/shop/${id}`} >
+        <CardActionArea>
+            <CardMedia component="img" height="350" image={image} alt={title} />
+        </CardActionArea>
+      </Link>  
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>
           <div className={styles.cardBottom}>
             <Typography>price: {price_usd}$</Typography>
-            <IconButton onClick={onAddCartItem}>
-              <TaskAltIcon />
-            </IconButton>
-            {itemAddedToCart && (
-              <Typography 
-              className={styles.cartCount} 
-              component="span" 
-              color="primary">
-                {itemAddedToCart.count}
-              </Typography>
-            )}
+            <Badge color="secondary" badgeContent={itemAddedToCart?.count}>
+              <IconButton onClick={onAddCartItem}>
+                <TaskAltIcon />
+              </IconButton>
+            </Badge>
           </div>
         </CardContent>
       </Card>

@@ -34,7 +34,7 @@ const LoginForm: React.FC = () => {
         email: "",
         password: "",
     } ,
-    mode: "all",
+    mode:"onSubmit",
   });
   const onSubmit = (data: FormData) => {
     console.log(data);
@@ -66,14 +66,17 @@ const LoginForm: React.FC = () => {
           <TextField
             {...register("email")}
             className={styles.field}
+            color="secondary"
             label="E-Mail"
             error={Boolean(errors.email?.message)}
             helperText={errors.email?.message}
             fullWidth
+            autoFocus
           />
           <TextField
             {...register("password")}
             className={styles.field}
+            color="secondary"
             error={Boolean(errors.password?.message)}
             helperText={errors.password?.message}
             label="Password"
@@ -93,7 +96,7 @@ const LoginForm: React.FC = () => {
           color={"#888484"}
           className={styles.title}>
           Don’t have an account? 
-          <Link to="/register">Create an account</Link>
+          <Link style={{marginLeft:5}} to="/register">Create an account</Link>
         </Typography>
       </Paper>
     </Box>

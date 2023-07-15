@@ -73,7 +73,7 @@ const Home:React.FC = () => {
                 style={{ backgroundImage: `url(${slide.image})` }}>
                 <p>{slide.title}</p>
                 <h3>{slide.text}</h3>
-                <Link to="/shop">
+                <Link className={styles.buttonShop}  to="/shop">
                   <Button variant="contained">shop now</Button>
                 </Link>
               </div>

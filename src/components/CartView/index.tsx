@@ -4,7 +4,6 @@ import { IconButton } from "@mui/material";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { serachMore } from "../../redux/filters/slice";
@@ -12,6 +11,7 @@ import { cartSelector } from "../../redux/cart/slice";
 
 import { DrawerCard } from "../DrawerCard";
 import styles from "./CartView.module.scss";
+import { useAppSelector } from "../../hooks/useApp";
 
 interface CartViewProps {
   onClose: (value: boolean) => void;
@@ -20,7 +20,7 @@ interface CartViewProps {
 
 export const CartView: React.FC<CartViewProps> = ({ onClose }) => {
 
-  const { items, totalPrice } = useSelector(cartSelector);
+  const { items, totalPrice } = useAppSelector(cartSelector);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

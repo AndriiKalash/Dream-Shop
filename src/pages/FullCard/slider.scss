@@ -1,0 +1,13 @@
+.carousel {
+    background-color: inherit;
+}
+.carousel .thumb.selected{
+    border: 3px solid #9c27b0;
+}
+.carousel .thumb:hover{
+ border: 3px solid #9c27b0;;
+}
+.root-full-card{
+    display: flex;
+    flex-direction: row-reverse;
+}

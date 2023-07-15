@@ -5,6 +5,7 @@ import { RootState } from "../store";
 const initialState: IFilters = {
   searchValue: "",
   searchMoreGoods: false,
+  priceValue: [0, 100],
 };
 
 const filtersSlice = createSlice({
@@ -17,11 +18,14 @@ const filtersSlice = createSlice({
     serachMore(state, action: PayloadAction<boolean>) {
       state.searchMoreGoods = action.payload;
     },
+    setPriceValue(state, action: PayloadAction<number[]>) {
+      state.priceValue = action.payload;
+    },
   },
 });
 
 export const filterSelector = (state: RootState) => state.filtersSlice;
 
 const { reducer, actions } = filtersSlice;
-export const { setSearchValue, serachMore } = actions;
+export const { setSearchValue, serachMore, setPriceValue } = actions;
 export default reducer;

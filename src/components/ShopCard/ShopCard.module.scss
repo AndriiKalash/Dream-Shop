@@ -6,10 +6,9 @@
     transition: all 500ms ease;
 }
 .card{
-    box-shadow: 14px 22px 30px rgb(0 0 0 / 35%)!important
+    box-shadow: 14px 22px 30px rgb(0 0 0 / 35%)!important;
 }
 .card:hover{
-    // padding: 20px 0 0 20px!important;
     box-shadow: 14px 22px 30px rgba(0, 0, 0, 0.54)!important
 }
 .cardBottom{
@@ -17,9 +16,4 @@
     justify-content: space-around;
     align-items: center;
     position: relative;
-}
-.cartCount {
-    position: absolute;
-    top: 5px;
-    right: 22px;
 }
