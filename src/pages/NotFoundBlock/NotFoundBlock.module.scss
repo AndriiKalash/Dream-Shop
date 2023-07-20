@@ -1,0 +1,19 @@
+.root {
+  text-align: center;
+  padding: 100px;
+}
+.button {
+  font-size: 14px;
+  color: #888484 !important;
+  background-color: transparent !important;
+  
+}
+.button:hover {
+  background-color: #888484 !important;
+  color: #fff !important;
+  border-bottom: 1px solid #888484;
+  transition: all 500ms ease-in-out;
+}
+.buttonLink::after {
+    display: none;
+  }

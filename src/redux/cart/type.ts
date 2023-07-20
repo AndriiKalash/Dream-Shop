@@ -1,9 +1,3 @@
-// export enum StatusCart {
-//   LOADING = "loading",
-//   IDLE = "idle",
-//   ERROR = "error",
-// }
-
 export interface ICartItem {
   id: number;
   image: string;
