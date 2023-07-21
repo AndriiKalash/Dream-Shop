@@ -39,16 +39,26 @@ const App: React.FC = () => {
           cartStatus={cartOpen}
           chidren={activeDrawer}
         />
-        <Suspense fallback={<Spinner/>}>
           <Routes>
-            <Route path="*" element={<NotFoundBlock />} />
             <Route path="/" element={<Home />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/login" element={<LoginForm />} />
+            <Route path="*" element={
+            <Suspense fallback={<Spinner/>}>
+              <NotFoundBlock />
+            </Suspense>} />
+            <Route path="/shop" element={
+            <Suspense fallback={<Spinner/>}>
+              <Shop />
+            </Suspense>} />
+            <Route path="/login" element={
+            <Suspense fallback={<Spinner/>}>
+              <LoginForm />
+            </Suspense>} />
             {/* <Route path="/register" element={<RegisterForm />} /> */}
-            <Route path="/shop/:id" element={<FullCard />} />
+            <Route path="/shop/:id" element={
+            <Suspense fallback={<Spinner/>}>
+              <FullCard />
+            </Suspense>} />
           </Routes>
-        </Suspense>
       </Container>
     </div>
   );
