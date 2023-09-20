@@ -27,7 +27,7 @@ interface SearchViewProps {
 
 export const SearchView: React.FC<SearchViewProps> = React.memo(
   ({ onClose }) => {
-    const { searchValue, priceValue } = useAppSelector(filterSelector);
+    const { searchValue } = useAppSelector(filterSelector);
     const dispatch = useAppDispatch();
     const delaySearch = useDebounce(searchValue, 1000);
     const searchValueBoolean = Boolean(delaySearch);

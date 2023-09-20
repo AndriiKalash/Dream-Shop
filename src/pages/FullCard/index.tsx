@@ -19,8 +19,7 @@ import { addToCart } from "../../redux/cart/slice";
 import { findedCartItem } from "../../redux/cart/slice";
 import { ICartItem } from "../../redux/cart/type";
 
-
-const FullCard:React.FC = () => {
+const FullCard: React.FC = () => {
   const { id } = useParams();
   const { data: item, isError, isLoading } = useGetItemQuery(Number(id));
   const items = [...Array(5).fill(item)];
@@ -44,8 +43,14 @@ const FullCard:React.FC = () => {
 
   if (isError) {
     return (
-      <div>Oh no, there was an error</div>
-    )
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+        }}>
+        Oh no, there was an error
+      </div>
+    );
   }
 
   const renderThumb = (items: IShopItem[]) => {

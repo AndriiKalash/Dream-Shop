@@ -1,20 +1,19 @@
-import { Badge, Divider, IconButton } from "@mui/material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import { Badge, Divider, IconButton } from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
-
-import { NavLink, Link, useLocation } from "react-router-dom";
-import { cartSelector } from "../../redux/cart/slice";
-import styles from "./Header.module.scss";
+import { NavLink, Link, useLocation } from 'react-router-dom';
+import { cartSelector } from '../../redux/cart/slice';
+import styles from './Header.module.scss';
 import {
   filterSelector,
   serachMore,
   setSearchValue,
-} from "../../redux/filters/slice";
-import { useAppDispatch, useAppSelector } from "../../hooks/useApp";
-import { useEffect, useRef} from "react";
-import { renderedDrawer } from "../../App";
-import { Sort } from "../Sort/Sort";
+} from '../../redux/filters/slice';
+import { useAppDispatch, useAppSelector } from '../../hooks/useApp';
+import { useEffect, useRef } from 'react';
+import { renderedDrawer } from '../../App';
+import { Sort } from '../Sort/Sort';
 
 interface IHeaderProps {
   openCart: (value: boolean) => void;
@@ -29,26 +28,23 @@ export const Header: React.FC<IHeaderProps> = ({
   const { searchMoreGoods } = useAppSelector(filterSelector);
   const dispatch = useAppDispatch();
   const onSearchClear = () => {
-    dispatch(setSearchValue(""));
+    dispatch(setSearchValue(''));
     dispatch(serachMore(false));
   };
   const isMounted = useRef(false);
   const location = useLocation();
 
-  const getLinkClassName = ({
-    isActive,
-    isPending,
-  }: Record<string, boolean>): string => (isActive ? styles.activeLink : "");
+  const getLinkClassName = ({ isActive }: Record<string, boolean>): string =>
+    isActive ? styles.activeLink : '';
 
   useEffect(() => {
     if (isMounted.current) {
       const json = JSON.stringify(items);
-      localStorage.setItem("cart", json);
+      localStorage.setItem('cart', json);
     }
     isMounted.current = true;
   }, [items]);
 
- 
   return (
     <div>
       <div className={styles.inner}>
@@ -79,9 +75,7 @@ export const Header: React.FC<IHeaderProps> = ({
               All goods
             </Link>
           )}
-          {location.pathname === "/shop" && (
-            <Sort/>
-          )}
+          {location.pathname === '/shop' && <Sort />}
           <IconButton
             onClick={() => {
               openCart(true);

@@ -1,10 +1,11 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../store";
-import { ICartItem, ICartItems } from "../cart/type";
-import { getItemsFromLS } from "../../utils/getItemsFromLS";
-import { getTotalCount, getTotalPrice } from "../../utils/getTotal";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../store';
+import { ICartItem, ICartItems } from '../cart/type';
+import { getItemsFromLS } from '../../utils/getItemsFromLS';
+import { getTotalCount, getTotalPrice } from '../../utils/getTotal';
 
 const { items, totalCount, totalPrice } = getItemsFromLS();
+
 const initialState: ICartItems = {
   items,
   totalCount,
@@ -12,7 +13,7 @@ const initialState: ICartItems = {
 };
 
 const cartSlice = createSlice({
-  name: "cart",
+  name: 'cart',
   initialState,
   reducers: {
     addToCart(state, action: PayloadAction<ICartItem>) {

@@ -11,13 +11,11 @@ import LoginForm from "./pages/Login";
 import NotFoundBlock from "./pages/NotFoundBlock";
 import "./App.scss";
 
-
-
-
 export enum renderedDrawer {
   SEARCH = "search",
   CART = "cart",
 }
+
 
 const App: React.FC = () => {
   const [cartOpen, setCartOpen] = useState(false);
